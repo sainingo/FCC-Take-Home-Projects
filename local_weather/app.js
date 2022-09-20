@@ -15,7 +15,6 @@ addEventListener('DOMContentLoaded', () => {
             fetch(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
             .then((res) => res.json())
             .then((result) => {
-                console.log(result)
                 output += `<div>
                     <h2>${result.name}, ${result.sys.country}</h2>
                     <h3>${result.main.temp},<span id="toggle">&#8451;</span></h3>
@@ -31,5 +30,11 @@ addEventListener('DOMContentLoaded', () => {
 
 
 const convertMe = () => {
-    console.log(123)
+    let cel = true
+    const celsius = document.querySelector('h3');
+    const cToF = celsius.textContent
+    const fahrenheit = (parseFloat(cToF) * 1.8) + 32
+    celsius.innerHTML = `${fahrenheit}, <span>&#8457;</span>`
+   
+    
 }
