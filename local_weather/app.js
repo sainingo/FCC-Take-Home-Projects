@@ -1,16 +1,35 @@
 const locateBtn = document.querySelector('#get-location')
 const locate = document.querySelector('.locate')
+const locationName = document.querySelector('.location')
+const temp = document.querySelector('.temp')
+const clouds = document.querySelector('.clouds')
+const imgSrc = document.querySelector('.img')
+const main = document.querySelector('.main')
 
 
-locateBtn.addEventListener('click', () => {
-    getLocation()
+
+addEventListener('DOMContentLoaded', () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+            let output = ''
+            fetch(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result)
+                output += `<div>
+                    <h2>${result.name}, ${result.sys.country}</h2>
+                    <h3>${result.main.temp},<span id="toggle">&#8451;</span></h3>
+                    <p>${result.weather[0].main}</p> 
+                    <img src=${result.weather[0].icon}/>    
+                    <button onclick="convertMe()">Convert</button>          
+                </div>`
+                main.innerHTML = output
+            })
+        })
+    }
 })
 
 
-const getLocation = () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((pos) => {
-            locate.innerHTML = `latitude: ${pos.coords.latitude} - longitude: ${pos.coords.longitude}`
-        })
-    }
+const convertMe = () => {
+    console.log(123)
 }
