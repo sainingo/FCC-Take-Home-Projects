@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 0;
+}
+
+.section {
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
